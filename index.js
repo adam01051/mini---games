@@ -7,7 +7,11 @@ let nextStep = '<i id="x" class=\'bx bx-x\'></i>'
 const divs = document.querySelectorAll('.arry')
 console.log(divs)
 let isFinished = false
-let setGameStatus = message =>{
+
+
+let setGameStatus = message => {
+    
+
     span.innerText = message
 }
 const winLines = [
