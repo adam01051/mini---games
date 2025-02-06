@@ -1,0 +1,203 @@
+body{
+    background-color:rgba(151, 173, 151, 0.692);
+    z-index: 1;
+}
+.smalldiv
+{
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+}
+
+.container
+{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.board{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    position: relative;
+  
+    border-radius: 5px;
+    
+    cursor: pointer;
+}
+.board1{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    position: relative;
+    left: 350px;
+    border-radius: 5px;
+    top: 30px;
+    z-index: -1;
+    overflow: hidden;
+    display: none;
+    opacity: 0;
+}
+
+.arry{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(126, 94, 121, 0.582);
+    border-radius: 5px;
+    opacity: 0.8;
+}
+.arry1{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-image: url(xmark.svg);
+    background-size: 55px;
+    background-repeat: no-repeat;
+    background-position: 49%;
+    background-color: rgba(213, 213, 226, 0.582);
+    border-radius: 5px;
+}
+.arry2{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-image: url(o-solid.svg);
+    background-repeat: no-repeat;
+    background-position: 48%;
+    background-size: 70px;
+    border-radius: 5px;
+}
+
+.board :nth-child(1){
+    margin-left: 13px;
+    margin-top: 13px;
+}
+.board :nth-child(2){
+    margin-left: 174px;
+    margin-top: 12px;
+}
+
+.board :nth-child(3){
+    margin-top: 13px;
+    margin-left: 336px;
+}
+.board :nth-child(4){
+    margin-left: 13px;
+    margin-top: 174px;
+}
+.board :nth-child(5){
+    margin-top: 174px;
+    margin-left: 174px;
+}
+.board :nth-child(6){
+    margin-top: 174px;
+    margin-left: 336px;
+}
+.board :nth-child(7){
+    margin-left: 13px;
+    margin-top: 336px;
+}
+.board :nth-child(8){
+    margin-top: 336px;
+    margin-left: 174px;
+}
+.board :nth-child(9){
+    margin-top: 336px;
+    margin-left: 336px;
+}
+
+.bx{
+    font-size: 120px;
+    /* margin-left: 10px; */
+}
+.arry:hover{
+    background-color: rgba(165, 42, 42, 0.534);
+    /* content: x; */
+}
+
+.conatiner2{
+    background-color:rgba(151, 173, 151, 0.692);
+    width:  100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+.dvi{
+position: absolute;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+}
+h2{
+    margin-left: -150;
+    
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0.8;
+
+}
+#btn2
+{
+    display: flex;
+    position: absolute;
+    margin-top: 600px; 
+}
+
+#btn{
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.582);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    width: 150px;
+    
+  }
+  .board> #btn
+  {
+    background-color: black;
+  }
+  
+  #btn:hover,
+  #btn:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+#btn:hover {
+  transform: translateY(-2px);
+}
+
+
