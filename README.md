@@ -1,4 +1,4 @@
-This project was done as a school project 
+This  was done as a school project 
 
 has only 2 player mode
 just html, css and js
