@@ -4,7 +4,6 @@ import bodyParser from "body-parser";
 import pg from "pg"
 
 
-
 const app = express();
 const port = 3000;
 
@@ -39,10 +38,7 @@ const checkWin = () => {
     return board.includes("") ? null : "Draw";
 };
 app.get("/", (req, res) => {
-	let body = req.body.container;
-	console.log(body);
-
-	console.log(req.body.hel);
+	
 	res.render("index.ejs");
 });
 
