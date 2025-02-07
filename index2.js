@@ -12,9 +12,22 @@ app.use(express.static("public"));
 
  
 app.get("/", (req, res) => {
+
+	let body = req.body.container;
+	console.log(body);
+	
+
+
+
+
+
+
 	console.log(req.body.hel);
 	res.render("index.ejs");
 });
+
+
+
  
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

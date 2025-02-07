@@ -10,7 +10,7 @@ let isFinished = false
 
 
 let setGameStatus = message => {
-    
+ 
 
     span.innerText = message
 }
