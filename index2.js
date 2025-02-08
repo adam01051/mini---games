@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 let board = Array(9).fill(null);
 let currentPlayer = "X";
-
+let count1 = 1;
 const winLines = [
 	[0, 1, 2],
 	[3, 4, 5],
@@ -29,6 +29,7 @@ const checkWin = () => {
 	for (const line of winLines) {
 		const [a, b, c] = line;
 		if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+			count1 = 0;
 			return board[a];
 		}
 	}
@@ -40,14 +41,26 @@ app.get("/", (req, res) => {
 });
 
 app.post("/move", (req, res) => {
+	
 	const { index, player } = req.body;
+	count1++;
 
 	if (board[index] || checkWin()) {
+		
+
 		return res.json({ success: false });
 	}
+	if (count1 === 9)
+	{
+		count1 = 1;
+
+		return res.json({ success: false });
+	}
+		console.log(count1);
 
 	board[index] = player;
 	const winner = checkWin();
+	
 	currentPlayer = player === "X" ? "O" : "X";
 
 	res.json({ success: true, nextPlayer: currentPlayer, winner });
