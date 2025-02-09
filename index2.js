@@ -29,7 +29,7 @@ const checkWin = () => {
 	for (const line of winLines) {
 		const [a, b, c] = line;
 		if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-			count1 = 0;
+			count1 = 1;
 			return board[a];
 		}
 	}
