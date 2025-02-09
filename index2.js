@@ -27,11 +27,20 @@ const winLines = [
 
 const checkWin = () => {
 	for (const line of winLines) {
+		count1++;
 		const [a, b, c] = line;
-		if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+		if (count1 === 9)
+		{
 			count1 = 1;
-			return board[a];
+			return `Draw`; 
+			
+
+		} else if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+			count1 = 1;
+			console.log(board[a]);
+			return `${board[a]} WIN`;
 		}
+
 	}
 	return null;
 };
@@ -43,20 +52,15 @@ app.get("/", (req, res) => {
 app.post("/move", (req, res) => {
 	
 	const { index, player } = req.body;
-	count1++;
+
 
 	if (board[index] || checkWin()) {
 		
-
+		
 		return res.json({ success: false });
 	}
-	if (count1 === 9)
-	{
-		count1 = 1;
+	
 
-		return res.json({ success: false });
-	}
-		console.log(count1);
 
 	board[index] = player;
 	const winner = checkWin();
