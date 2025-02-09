@@ -29,18 +29,16 @@ const checkWin = () => {
 	for (const line of winLines) {
 		count1++;
 		const [a, b, c] = line;
-		if (count1 === 9)
-		{
+		
+		if (board[a] && board[a] === board[b] && board[a] === board[c]) {
 			count1 = 1;
-			return `Draw`; 
-			
 
-		} else if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-			count1 = 1;
-			console.log(board[a]);
 			return `${board[a]} WIN`;
-		}
-
+		} 
+		 
+	}
+	if (board.every((cell) => cell !== null)) {
+		return "draw";
 	}
 	return null;
 };
