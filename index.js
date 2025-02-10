@@ -9,6 +9,7 @@ import session from "express-session";
 import env from "dotenv";
 import path from "path";
 
+
 const app = express();
 const port = 3000;
 const saltRounds = 10;
