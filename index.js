@@ -46,6 +46,9 @@ const checkWin = () => {
 app.get("/", (req, res) => {
 	res.render("index", { board });
 });
+app.get("/tictac", (req, res) => {
+	res.render("tictakgame", { board });
+});
 
 
 app.post("/move", (req, res) => {
