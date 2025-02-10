@@ -1,96 +1,80 @@
-let body = document.getElementById('body')
-let container = document.getElementById('container')
-let container2 = document.getElementById('conatiner2')
-let span  = document.getElementById('span')
-let button = document.getElementById('btn')
-let nextStep = '<i id="x" class=\'bx bx-x\'></i>'
-const divs = document.querySelectorAll('.arry')
-console.log(divs)
-let isFinished = false
+import express from "express";
+import bodyParser from "body-parser";
+import pg from "pg";
+import path from "path";
 
 
-let setGameStatus = message => {
-    
+const app = express();
+const PORT = 3000;
 
-    span.innerText = message
-}
+app.set("view engine", "ejs");  
+app.use(express.static("public"));
+app.use(bodyParser.json());
+
+let board = Array(9).fill(null);
+let currentPlayer = "X";
+let count1 = 1;
 const winLines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-];
-const checkWin = ()=>{
-    const win = winLines.find(winLine => {
-        const first = divs[winLine[0]].innerHTML;
-        const second = divs[winLine[1]].innerHTML;
-        const third = divs[winLine[2]].innerHTML;
-        let t = third === ''
-        return first === second && second === third && t===false
-        
-    })
-    const winner =  nextStep === '<i id="x" class=\'bx bx-x\'></i>'?'Stop Game 0 ':'Stop Game X '
-    setGameStatus(winner)
-    if(win){
-        container.style.opacity = '-1'
-        container.style.zIndex = '-1'
-        container2.style.display = 'block'
-    }
-    if(!win){
-        return false;
-    }
-    console.log(win);
-    isFinished = true
-    
-}
-let count = 0
-  const handleClick = div=>{
-    if(div.innerHTML === '' ){
-    div.innerHTML = nextStep ==='<i id="x" class=\'bx bx-x\'></i>'?'<i id="x" class=\'bx bx-x\'></i>':'<i id="o" class=\'bx bx-radio-circle\'>';
-    nextStep = nextStep ==='<i id="x" class=\'bx bx-x\'></i>'?'<i id="o" class=\'bx bx-radio-circle\'>':'<i id="x" class=\'bx bx-x\'></i>';
-    count++;
-    checkWin();
-}else{
-    alert('This block already has a value')  
-}
-}
-divs.forEach((div)=>{
-    div.addEventListener('click',()=>handleClick(div))
-})
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	[0, 4, 8], 
+	[2, 4, 6],
+]; 
 
-divs.forEach((div)=>{
-    div.addEventListener('mouseover', ()=>{
-        if(count === 0){
-            div.classList.add('arry1');
-        }else if(count === 1 && div.innerHTML ===''){
-            div.classList.add('arry2');
-        }else if(count === 2 && div.innerHTML === ''){
-            div.classList.add('arry1');
-        }else if(count === 3 && div.innerHTML ===''){
-            div.classList.add('arry2');
-        }else if(count === 4 && div.innerHTML === ''){
-            div.classList.add('arry1');
-        }else if(count === 5 && div.innerHTML ===''){
-            div.classList.add('arry2');
-        }else if(count === 6 && div.innerHTML === ''){
-            div.classList.add('arry1');
-        }else if(count === 7 && div.innerHTML ===''){
-            div.classList.add('arry2');
-        }else if(count === 8 && div.innerHTML === ''){
-            div.classList.add('arry1');
-            
-        }else if(count === 9 && div.innerHTML ===''){
-            
-            div.classList.add('arry2');
-           
-        }
-        
-    div.addEventListener('mouseout', ()=>{
-        div.classList.remove('arry1');
-        div.classList.remove('arry2');
-    })
-})})
+const checkWin = () => {
+	for (const line of winLines) {
+		count1++; 
+		const [a, b, c] = line;
+		
+		if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+			count1 = 1;
+
+			return `${board[a]} WIN`;
+		} 
+		 
+	}
+	if (board.every((cell) => cell !== null)) {
+		return "draw";
+	}
+	return null;
+};
+
+app.get("/", (req, res) => {
+	res.render("index", { board });
+});
+
+
+app.post("/move", (req, res) => {
+	
+	const { index, player } = req.body;
+
+
+	if (board[index] || checkWin()) {
+		
+		
+		return res.json({ success: false });
+	}
+	
+
+
+	board[index] = player;
+	const winner = checkWin();
+	
+	currentPlayer = player === "X" ? "O" : "X";
+
+	res.json({ success: true, nextPlayer: currentPlayer, winner });
+});
+
+app.post("/reset", (req, res) => {
+	board = Array(9).fill(null);
+	currentPlayer = "X";
+	res.json({ success: true });
+});
+
+app.listen(PORT, () =>
+	console.log(`Server running on http://localhost:${PORT}`)
+);

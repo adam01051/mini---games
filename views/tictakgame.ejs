@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Adam's Game</title>
+</head>
+<body id="body">
+    <div class="container" id="container">
+        <div class="board">
+            <% for (let i = 0; i < 9; i++) { %>
+                <div class="arry" data-index="<%= i %>"></div>
+            <% } %>
+        </div>
+        <div id="btn2">
+            <button id="restart">Restart</button>
+        </div>
+    </div>
+
+    <div class="container2" id="container2" style="display: none;">
+        <div class="smalldiv">
+            <div class="dvi">
+                <h2><span id="span"></span></h2>
+                <button id="restart2">Restart</button>
+             
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
