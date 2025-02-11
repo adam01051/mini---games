@@ -1,9 +1,9 @@
-This is a personal project  where  you have to register in order to  access  the mini games
+This is a personal project  where  you have to register in order to  access  the APP gallery
 
 There is a registration page  that was done with  google auth  and bycrpt   for authorithation
 data will be  stores in postgres database 
 
-register->  menu page ->  select_game
+register->  menu page ->  select app/game
 
 **Set up**
 you need to  install all  node modules  with npm i 
