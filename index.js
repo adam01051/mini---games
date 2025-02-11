@@ -24,6 +24,7 @@ const saltRounds = 10;
 env.config();
 app.set("view engine", "ejs");  
 
+
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
@@ -84,6 +85,9 @@ const checkWin = () => {
 
 app.get("/", (req, res) => {
 	res.render("index.ejs");
+});
+app.get("/url_short", (req, res) => {
+	res.render("url_short.ejs"); 
 });
 app.get("/tictac", (req, res) => {
 	res.render("tictakgame", { board });
@@ -235,7 +239,7 @@ passport.use(
 		},
 		async (accessToken, refreshToken, profile, cb) => {
 			try {
-				console.log(profile);
+			
 				const result = await db.query("select * from users where username = $1", [
 					profile.email,
 				]);
@@ -266,18 +270,18 @@ app.post("/submit_url", async (req, res) => {
 				},
 			});
 			console.log("done");
-			res.render("index.ejs", { dat1: response.data.result_url });
+			res.render("url_short.ejs", { dat1: response.data.result_url });
 		} catch (error) {
-			res.render("index.ejs", { dat1: error.status });
+			res.render("url_short.ejs", { dat1: error.status });
 		}
 	} else {
 		try {
 			var qr_svg = qr.image(req.body.links);
 			qr_svg.pipe(fs.createWriteStream("public/qr-of-link.png"));
 			console.log("done2");
-			res.render("index.ejs", { dat1: 3 });
+			res.render("url_short.ejs", { dat1: 3 });
 		} catch (error) {
-			res.render("index.ejs", { dat1: error.status });
+			res.render("url_short.ejs", { dat1: error.status });
 		}
 	}
 });
