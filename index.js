@@ -17,12 +17,24 @@ import qr from "qr-image";
 import fs from "fs"; 
 new Darkmode().showWidget();
 const API_URL = "https://cleanuri.com/api/v1/shorten";
- 
+  
+
+
+import { fileURLToPath } from "url";
+
 const app = express();
+
+// Define __dirname manually for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const port = 3000;
 const saltRounds = 10;
 env.config();
 app.set("view engine", "ejs");  
+
+
+app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use(
