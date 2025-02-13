@@ -92,6 +92,9 @@ app.get("/url_short", (req, res) => {
 app.get("/tictac", (req, res) => {
 	res.render("tictakgame", { board });
 });
+app.get("/free_fall", (req, res) => {
+	res.render("free_fall.ejs");
+});
 
 app.post("/move", (req, res) => {
 	const { index, player } = req.body;
