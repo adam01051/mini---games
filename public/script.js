@@ -55,6 +55,8 @@ let maxHeightY = null; // Variable to store the y-coordinate of the highest poin
 document
 	.getElementById("simulation-form")
 	.addEventListener("submit", function (event) {
+
+		
 		event.preventDefault(); // Prevent the default form submission behavior
 		// Retrieve input values from the form
 		const initialHeight = parseFloat(
