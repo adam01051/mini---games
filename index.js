@@ -102,12 +102,12 @@ app.get("/url_short", (req, res) => {
 	res.render("url_short.ejs"); 
 });
 app.get("/tictac", (req, res) => {
-	res.render("tictakgame", { board });
+	res.render("tictakgame", { board }); 
 });
 app.get("/calc", (req, res) => { 
 	res.render("calculator", { board });
 });
-app.get("/free_fall", (req, res) => {
+app.get("/free_fall", (req, res) => { 
 	res.render("free_fall.ejs");
 });
 
